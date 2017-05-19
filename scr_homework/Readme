@@ -1,0 +1,33 @@
+- 3 Sequenze ognuna contenente quattro osservazioni con 10^6 campioni con parte reale ed immaginaria
+
+- Per ogni sequenza ho 4 osservazioni con campioni diversi, osservate con SNR diversi (rispettivamente):
+	-13dB
+	-8dB
+	-5dB
+	+2dB
+	
+- Con il metodo dell'Energy Detection (ED), fissata Pfa=10^-2=1/100 (probabilità di falso allarme),
+  analizzare le sequenze date per individuare in quale delle 3 sia presente segnale.
+ 
+- All'aumentare dell'SNR (ovvero man mano che si analizzano le 4 sotto-sequenze, dalla più rumorosa in su)
+  deve aumentare la Probabilità di Detection (Pd), ovvero Pr>soglia (potenza segnale R(i)) su almeno il 70% dei k blocchi
+  (k=10^2 o 10^3) in cui ho diviso la sequenza R(i) nel caso H1 (R(i) = n(i) + s(i), sia segnale che rumore).
+ 
+- Per calcolare la soglia devo pormi nel caso H0 (R(i) = n(i)), generando 10^3 sequenze di rumore per ogni livello 
+  di SNR, quindi non conta il numero di sequenze da analizzare.
+  Ordinando le 10^3 sequenze generate in ordine di potenza crescente, selezionare una soglia pari alla potenza per la 
+  quale solo 10/1000 si trovano sopra questa potenza di soglia (metodo del percentile).
+  
+- Per il calcolo della soglia considero Pu=1 (Potenza utile di segnale) nella formula di SNR=Pu/Pn con scala lineare.
+  Pn = 1/SNR(L)=10^(-SNR(dB)/10) Questo valore è necessario per generare le sequenze di rumore.
+
+- Dato che il metodo nextGaussian deve essere moltiplicato per sqrt(Pn/2) avendo due array distinti per reali 
+  ed immaginari, in modo da avere un modulo quadro di R(i) pari a Pn; Varianza=1 Valore Atteso=0 per la Gaussiana (AWGN)
+  
+- Le 1000 sequenze tenderanno a Pn per infiniti campioni (nel caso H0?)
+
+- Il grafico della Pd in funzione del SNR tenderà a 1 per SNR->+inf e tenderà a Pfa per SNR->-inf 
+  4 punti da interpolare per generare la curva che mostra questo andamento di ddp
+  
+- La tabella finale deve mostrare 3 righe, ognuna per sequenza con una colonna che mostra la Pd e una nota in cui
+  viene spiegato brevemente se il segnale è presente o meno.
