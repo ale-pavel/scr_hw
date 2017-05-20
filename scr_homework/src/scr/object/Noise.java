@@ -2,7 +2,7 @@ package scr.object;
 
 import java.util.Random;
 
-public class Noise extends GenericSignal{
+public class Noise extends Signal{
 
 	public Noise(int lunghezzaSequenza, double snr) {
 		super(lunghezzaSequenza);
@@ -10,7 +10,11 @@ public class Noise extends GenericSignal{
 		this.setImmaginari(this.generaUnaSequenzaRumorosa(this.getLength(), snr));
 	}
 	
-	public double[] generaUnaSequenzaRumorosa(int length, double snr) {
+	public Noise(int lunghezzaSequenza) {
+		super(lunghezzaSequenza);
+	}
+
+	private double[] generaUnaSequenzaRumorosa(int length, double snr) {
 		double[] sequenza = new double[length];
 		Random r = new Random();
 		double snr_lineare = Math.pow(10, snr/10);

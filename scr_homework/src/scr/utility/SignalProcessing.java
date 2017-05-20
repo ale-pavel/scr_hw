@@ -4,6 +4,14 @@ import scr.object.*;
 
 public class SignalProcessing {
 	
+	public double potenzaMediaSequenza(Signal[] sequenza) {
+		double potenza = 0;
+		for(int i=0;i<sequenza.length;i++) {
+			potenza += sequenza[i].potenza();
+		}
+		return potenza/sequenza.length;
+	}
+
 	public double[] campionaSequenza(double[] campioni, int numeroCampioni) {
 		double[] sequence = new double[numeroCampioni];
 		int fattoreDecimazione = campioni.length/numeroCampioni;
@@ -21,6 +29,19 @@ public class SignalProcessing {
 			}																		//per prelevare campione corretto
 		}		
 		return sequenzaSeparata;
+	}
+	
+	public Signal[] separaSegnaleInBlocchi(Signal s, int numeroBlocchi) {
+		Signal[] signalChunks = new Signal[numeroBlocchi];
+		double[][] realiChunks = this.separaSequenzaInBlocchi(s.getReali(), numeroBlocchi);
+		double[][] immChunks = this.separaSequenzaInBlocchi(s.getImmaginari(), numeroBlocchi);
+		int length = realiChunks.length;
+		for(int i=0;i<numeroBlocchi;i++) {
+			signalChunks[i] = new Signal(length);
+			signalChunks[i].setReali(realiChunks[i]);
+			signalChunks[i].setImmaginari(immChunks[i]);
+		}
+		return signalChunks;
 	}
 	
 	public Noise[] generaSequenzeRumorose(int numeroSequenze,int lunghezzaSequenza, double snr) {
