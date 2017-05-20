@@ -27,14 +27,14 @@ public class HomeworkMain {
 			System.out.println("Soglia="+valori_soglie[soglia]);
 		}
 
-		for(int seq=1;seq<=3;seq++) {
-			for(int snr=0;snr<livelli_snr.length;snr++) {
+		for(int seq=1;seq<=3;seq++) {	//Itero per controllare le 3 sequenze
+			for(int snr=0;snr<livelli_snr.length;snr++) {	//Itero per leggere le 4 osservazioni di ogni sequenza
 				//Carico il file contenente parte reale e imm. dentro un Signal
 				Signal s = cs.parseRighe(cs.leggiSequenza("Sequenze/seq"+seq+"/output_"+(snr+1)+".dat"));
-
+				
 				//Devo dividere il segnale in 100 o 1000 blocchi da 10.000 o 1000 campioni rispettivamente
 				Signal[] s_chunks = sp.separaSegnaleInBlocchi(s, 1000);
-				int percentualeSopraSoglia = 0;
+				double percentualeSopraSoglia = 0;
 				for(int i=0; i<s_chunks.length;i++) {
 					double pot = s_chunks[i].potenza();
 					if(pot > valori_soglie[snr])
