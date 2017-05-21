@@ -2,16 +2,22 @@ package scr.object;
 
 import java.util.Random;
 
-public class Noise extends Signal{
+public class Rumore extends Segnale{
+	private double snr;
 
-	public Noise(int lunghezzaSequenza, double snr) {
+	public Rumore(int lunghezzaSequenza, double snr) {
 		super(lunghezzaSequenza);
+		this.snr = snr;
 		this.setReali(this.generaUnaSequenzaRumorosa(this.getLength(), snr));
 		this.setImmaginari(this.generaUnaSequenzaRumorosa(this.getLength(), snr));
 	}
 	
-	public Noise(int lunghezzaSequenza) {
+	public Rumore(int lunghezzaSequenza) {
 		super(lunghezzaSequenza);
+	}
+	
+	public double getSnr() {
+		return this.snr;
 	}
 
 	private double[] generaUnaSequenzaRumorosa(int length, double snr) {
