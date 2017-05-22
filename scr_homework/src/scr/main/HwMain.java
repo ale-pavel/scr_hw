@@ -7,7 +7,7 @@ public class HwMain {
 	public static final int NUMERO_CAMPIONI = 1000000;
 	public static final int NUMERO_SEQUENZE = 3;
 	public static final int NUMERO_OSSERVAZIONE = 4;
-	public static final int NUMERO_BLOCCHI = 10000;
+	public static final int NUMERO_BLOCCHI = 1000;
 	public static final double PROB_FALSO_ALLARME = 0.01;
 	public static final int NUMERO_SEQ_RUMORE = 1000;
 	public static final int NUMERO_SAMPLE_RUMORE = 1000;
