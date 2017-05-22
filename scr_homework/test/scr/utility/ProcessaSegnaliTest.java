@@ -56,15 +56,15 @@ public class ProcessaSegnaliTest {
 		double[] rea = {1,2,3,4,5,6,7,8,9,10};
 		double[] imm = {1,2,3,4,5,6,7,8,9,10};
 		Segnale s = new Segnale(rea.length, rea, imm);
-		Segnale[] s_chunks = s.separaSegnaleInBlocchi(5);
+		Segnale[] s_chunks = s.separaSegnaleInBlocchi(2);
 		for(int i=0;i<s_chunks.length;i++) {
 			for(int j=0; j<s_chunks[i].getLength();j++) {
-				System.out.print(s_chunks[i].getReali()[j]+" J"+s_chunks[i].getImmaginari()[j]);
+				System.out.print(s_chunks[i].getReali()[j]+" J"+s_chunks[i].getImmaginari()[j]+" | ");
 			}
 			System.out.println();
 		}
 		assertSame(5, s_chunks.length);
-		assertSame(2, s_chunks[0].getLength());
+		assertSame(5, s_chunks[0].getLength());
 	}
 
 }

@@ -1,11 +1,7 @@
 - 3 Sequenze ognuna contenente quattro osservazioni con 10^6 campioni con parte reale ed immaginaria
 
 - Per ogni sequenza ho 4 osservazioni con campioni diversi, osservate con SNR diversi (rispettivamente):
-  SNR(dB) | Pn(dB)
-   -13dB  | 19.95dB
-	-8dB  | 6.31dB
-	-5dB  | 3.16dB
-	+2dB  | 0.63dB
+  SNR(dB) : (-3,2,-8,-13)
 	
 - Con il metodo dell'Energy Detection (ED), fissata Pfa=10^-2=1/100 (probabilità di falso allarme),
   analizzare le sequenze date per individuare in quale delle 3 sia presente segnale.

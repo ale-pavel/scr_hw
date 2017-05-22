@@ -4,16 +4,17 @@ import scr.object.*;
 import scr.utility.*;
 
 public class HwMain {
+	public static final int NUMERO_CAMPIONI = 1000000;
 	public static final int NUMERO_SEQUENZE = 3;
 	public static final int NUMERO_OSSERVAZIONE = 4;
-	public static final int NUMERO_BLOCCHI = 1000;
+	public static final int NUMERO_BLOCCHI = 10000;
 	public static final double PROB_FALSO_ALLARME = 0.01;
 	public static final int NUMERO_SEQ_RUMORE = 1000;
 	public static final int NUMERO_SAMPLE_RUMORE = 1000;
-	public static final double[] LIVELLI_SNR = {-13,-8,-5,2};
+	public static final double[] LIVELLI_SNR = {-3,2,-8,-13};
 
 	public static void main(String[] args) {
-		CaricatoreSequenza cs = new CaricatoreSequenza(1000000);
+		CaricatoreSequenza cs = new CaricatoreSequenza(NUMERO_CAMPIONI);
 		ProcessaSegnali ps = new ProcessaSegnali();	
 
 		//Calcolo delle soglie generando 1000 sequenze di rumore per ogni SNR		

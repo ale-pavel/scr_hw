@@ -8,8 +8,8 @@ public class Rumore extends Segnale{
 	public Rumore(int lunghezzaSequenza, double snr) {
 		super(lunghezzaSequenza);
 		this.snr = snr;
-		this.setReali(this.generaUnaSequenzaRumorosa(this.getLength(), snr));
-		this.setImmaginari(this.generaUnaSequenzaRumorosa(this.getLength(), snr));
+		this.setReali(this.generaUnaSequenzaRumorosa(lunghezzaSequenza, snr));
+		this.setImmaginari(this.generaUnaSequenzaRumorosa(lunghezzaSequenza, snr));
 	}
 	
 	public Rumore(int lunghezzaSequenza) {

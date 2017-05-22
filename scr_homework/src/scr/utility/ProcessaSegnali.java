@@ -28,7 +28,7 @@ public class ProcessaSegnali {
 			Arrays.sort(potenzeSequenze);
 			//Array da 0 a 999, solo 10 devono essere sopra soglia, 990..999 -> [989]
 			//soglia = potenzeSequenze[989] cambiato per permettere la variazione delle costanti nel main senza avere accoppiamento
-			valori_soglie[snr] = potenzeSequenze[(HwMain.NUMERO_SAMPLE_RUMORE-1)-(int)(HwMain.NUMERO_SAMPLE_RUMORE*HwMain.PROB_FALSO_ALLARME)];	
+			valori_soglie[snr] = potenzeSequenze[(HwMain.NUMERO_SEQ_RUMORE-1)-(int)(HwMain.NUMERO_SEQ_RUMORE*HwMain.PROB_FALSO_ALLARME)];	
 		}
 		return valori_soglie;
 	}

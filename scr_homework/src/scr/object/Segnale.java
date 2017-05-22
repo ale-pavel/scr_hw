@@ -65,9 +65,8 @@ public class Segnale {
 		double[][] realiChunks = this.separaSequenzaInBlocchi(this.getReali(), numeroBlocchi);
 		double[][] immChunks = this.separaSequenzaInBlocchi(this.getImmaginari(), numeroBlocchi);
 		//Ho separato singolarmente la parte reale ed immaginaria
-		int length = realiChunks.length;
 		for(int i=0;i<numeroBlocchi;i++) {
-			signalChunks[i] = new Segnale(length);
+			signalChunks[i] = new Segnale(this.length/numeroBlocchi);
 			signalChunks[i].setReali(realiChunks[i]);
 			signalChunks[i].setImmaginari(immChunks[i]);
 		}
