@@ -27,6 +27,7 @@ public class ProcessaSegnaliTest {
 		int num_sequenze = 1000;
 		int num_campioni = 1000;
 		ProcessaSegnali sp = new ProcessaSegnali();
+		/*
 		Rumore[] seq1 = sp.generaSequenzeRumorose(num_sequenze, num_campioni, -13);
 		Rumore[] seq2 = sp.generaSequenzeRumorose(num_sequenze, num_campioni, -8);
 		Rumore[] seq3 = sp.generaSequenzeRumorose(num_sequenze, num_campioni, -5);
@@ -36,6 +37,16 @@ public class ProcessaSegnaliTest {
 		System.out.println("Pn:6.31 = " + sp.potenzaMediaSequenza(seq2));
 		System.out.println("Pn:3.16 = " + sp.potenzaMediaSequenza(seq3));
 		System.out.println("Pn:0.63 = " + sp.potenzaMediaSequenza(seq4));
+		*/
+		Rumore[] seq1 = sp.generaSequenzeRumorose(num_sequenze, num_campioni, -3);
+		Rumore[] seq2 = sp.generaSequenzeRumorose(num_sequenze, num_campioni, 2);
+		Rumore[] seq3 = sp.generaSequenzeRumorose(num_sequenze, num_campioni, -8);
+		Rumore[] seq4 = sp.generaSequenzeRumorose(num_sequenze, num_campioni, -13);
+		//Valori arrotondati alla seconda cifra decimale calcolati con formula SNR linearizzato
+		System.out.println("Pn:1.99 = " + sp.potenzaMediaSequenza(seq1));
+		System.out.println("Pn:0.63 = " + sp.potenzaMediaSequenza(seq2));
+		System.out.println("Pn:6.31 = " + sp.potenzaMediaSequenza(seq3));
+		System.out.println("Pn:19.95 = " + sp.potenzaMediaSequenza(seq4));
 	}
 	
 	@Test
@@ -63,7 +74,7 @@ public class ProcessaSegnaliTest {
 			}
 			System.out.println();
 		}
-		assertSame(5, s_chunks.length);
+		assertSame(2, s_chunks.length);
 		assertSame(5, s_chunks[0].getLength());
 	}
 

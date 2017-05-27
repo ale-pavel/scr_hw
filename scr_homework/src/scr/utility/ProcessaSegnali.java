@@ -1,8 +1,8 @@
 package scr.utility;
 
 import java.util.Arrays;
-
-import scr.main.HwMain;
+import java.util.LinkedList;
+import java.util.TreeMap;
 import scr.object.*;
 
 public class ProcessaSegnali {
@@ -14,11 +14,11 @@ public class ProcessaSegnali {
 		}	
 		return sequenzeRumore;
 	}
-	public double[] calcoloSoglie(double[] livelli_snr) {
+	public double[] calcoloSoglie(double[] livelli_snr, int numeroSeq, int numeroSample, double Pfa) {
 		double[] valori_soglie = new double[livelli_snr.length];
 		for(int snr=0;snr<livelli_snr.length;snr++) {
 			//Genero 1000 sequenze di rumore da 1000 campioni ciascuna con SNR=-13
-			Rumore[] sequenzeRumore = generaSequenzeRumorose(HwMain.NUMERO_SEQ_RUMORE, HwMain.NUMERO_SAMPLE_RUMORE, livelli_snr[snr]);
+			Rumore[] sequenzeRumore = generaSequenzeRumorose(numeroSeq, numeroSample, livelli_snr[snr]);
 			double[] potenzeSequenze = new double[sequenzeRumore.length];		
 			//Popolo l'array delle potenze con quelle di ogni sequenza di rumore
 			for(int i=0; i<sequenzeRumore.length; i++) {
@@ -28,7 +28,7 @@ public class ProcessaSegnali {
 			Arrays.sort(potenzeSequenze);
 			//Array da 0 a 999, solo 10 devono essere sopra soglia, 990..999 -> [989]
 			//soglia = potenzeSequenze[989] cambiato per permettere la variazione delle costanti nel main senza avere accoppiamento
-			valori_soglie[snr] = potenzeSequenze[(HwMain.NUMERO_SEQ_RUMORE-1)-(int)(HwMain.NUMERO_SEQ_RUMORE*HwMain.PROB_FALSO_ALLARME)];	
+			valori_soglie[snr] = potenzeSequenze[(numeroSeq-1)-(int)(numeroSeq*Pfa)];	
 		}
 		return valori_soglie;
 	}
@@ -60,6 +60,20 @@ public class ProcessaSegnali {
 			sequence[i] = campioni[i*fattoreDecimazione];	//Prendo un campione ogni numeroCampioni (0,1000,2000...)
 		}
 		return sequence;
+	}
+
+	public boolean presenzaUtentePrimario(TreeMap<Double,Double> snr2pd, double percentualeMinima) {
+		boolean b = true;
+		//Ottengo la lista delle Percenduali Detection ordinate per SNR crescente
+		LinkedList<Double> listaPd = new LinkedList<>(snr2pd.values());
+		Double primoPd = listaPd.removeFirst();
+		while(listaPd.size()>0 && b) {
+			Double temp = listaPd.removeFirst();
+			if(temp < primoPd || temp < percentualeMinima)
+				b = false;
+			primoPd = temp;
+		}
+		return b;
 	}
 
 }
