@@ -13,7 +13,8 @@ public class HwMain {
 	public static final int NUMERO_SEQ_RUMORE = 1000;
 	public static final int NUMERO_SAMPLE_RUMORE = 1000;
 	public static final double[] LIVELLI_SNR = {-3,2,-8,-13};
-	public static final double PERCENTUALE_MINIMA_DETECTION = 70.0;
+	public static final double PERCENTUALE_MINIMA_DETECTION = 70.0;	//Vedere il metodo scr.utility.ProcessaSegnali.presenzaUtentePrimario 
+	//Le 4 osservazioni devono essere tutte con probabilità di detection>70% oltre che crescenti in base al SNR
 
 	public static void main(String[] args) {
 		CaricatoreSequenza cs = new CaricatoreSequenza(NUMERO_CAMPIONI);
